@@ -1,0 +1,74 @@
+.about-degree {
+    padding: 8%;
+    margin: 0 auto;
+    border-radius: 8px;
+    background-color: #EFEDEB;
+    color: #333333;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.about-degree h1 {
+    color: #f76902;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 38px;
+}
+
+.degrees-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.degrees-section {
+    width: 48%;
+    background-color: #EFEDEB;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.degrees-section h2 {
+    color: #f76902;
+    margin-bottom: 15px;
+}
+
+.degrees-section h3 {
+    color: #333333;
+    margin-bottom: 10px;
+}
+
+.degrees-section p {
+    color: #666666;
+    margin-bottom: 15px;
+}
+
+.degrees-section .quote {
+    border-left: 3px solid #f76902;
+    padding-left: 15px;
+    margin-top: 15px;
+}
+
+.degrees-section .quote p {
+    margin-bottom: 10px;
+}
+
+.degrees-section .quote ul {
+    margin-top: 5px;
+    padding-left: 20px;
+}
+
+.degrees-section .quote ul li {
+    list-style-type: disc;
+    color: #666666;
+}
+
+@media (max-width: 768px) {
+    .degrees-container {
+        flex-direction: column;
+    }
+
+    .degrees-section {
+        width: 100%;
+    }
+}

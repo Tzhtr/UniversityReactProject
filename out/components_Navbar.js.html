@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/Navbar.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/Navbar.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Component for rendering a navigation bar.
+ * @module Navbar
+ * @component
+ */
+import React, { Component } from 'react';
+import './Nav.css';
+import logo from './ritlogo.png';
+import TextRotator from './TextRotator';
+/**
+ * Represents the Navbar component.
+ * @class
+ * @extends Component
+ */
+export default class Navbar extends Component {
+    /**
+     * Creates an instance of Navbar.
+     * @constructor
+     * @param {Object} props - The properties passed to the component.
+     */
+    constructor(props) {
+        super(props);
+        /**
+         * State of the component.
+         * @type {Object}
+         * @property {boolean} isMenuOpen - Indicates whether the menu is open.
+         */
+        this.state = {
+            isMenuOpen: false
+        };
+    }/**
+     * Scrolls to a section with the provided ID.
+     * @param {string} id - The ID of the section to scroll to.
+     */
+
+    scrollToSection = (id) => {
+        const element = document.getElementById(id);
+        if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+        }
+    };
+ /**
+     * Toggles the menu state between open and closed.
+     */
+    toggleMenu = () => {
+        this.setState(prevState => ({
+            isMenuOpen: !prevState.isMenuOpen
+        }));
+    };
+/**
+     * Renders the component.
+     * @returns {JSX.Element} JSX representation of the component.
+     */
+    render() {
+        const { isMenuOpen } = this.state;
+
+        return (
+            &lt;div>
+                {/* Navigation bar */}
+                &lt;nav className="navbar">
+                    &lt;div className="navbar-logo">
+                        {/* Logo */}
+                        &lt;img src={logo} alt="Logo" />
+                    &lt;/div>
+                    {/* Hamburger menu icon for mobile */}
+                    &lt;div className="hamburger-menu" onClick={this.toggleMenu}>
+                        &lt;div className={`hamburger-icon ${isMenuOpen ? 'open' : ''}`}>&lt;/div>
+                    &lt;/div>
+                    {/* Navigation links */}
+                    &lt;ul className={`navbar-links ${isMenuOpen ? 'open' : ''}`}>
+                        &lt;li className="navbar-link">
+                            &lt;a href="#" onClick={() => this.scrollToSection("Home")}>Home&lt;/a>
+                        &lt;/li>
+                        &lt;li className="navbar-link">
+                            &lt;a href="#About" onClick={() => this.scrollToSection("About")}>About&lt;/a>
+                        &lt;/li>
+                        &lt;li className="navbar-link">
+                            &lt;a href="#Degrees" onClick={() => this.scrollToSection("Degrees")}>Degrees&lt;/a>
+                        &lt;/li>
+                        &lt;li className="navbar-link">
+                            &lt;a href="#Employment" onClick={() => this.scrollToSection("Employment")}>Employment&lt;/a>
+                        &lt;/li>
+                        &lt;li className="navbar-link">
+                            &lt;a href="#Faculty" onClick={() => this.scrollToSection("Faculty")}>Faculty&lt;/a>
+                        &lt;/li>
+                        &lt;li className="navbar-link">
+                            &lt;a href="#Contact" onClick={() => this.scrollToSection("Contact")}>Contact&lt;/a>
+                        &lt;/li>
+                    &lt;/ul>
+                &lt;/nav>
+                &lt;header className="header">
+                    &lt;video src="https://www.rit.edu/croatia/sites/rit.edu.croatia/files/videos/croatia-video.mp4" autoPlay loop muted />
+                    &lt;div className="header-content">
+                        &lt;h1>RIT&lt;/h1>
+                        &lt;TextRotator />
+                    &lt;/div>
+                &lt;/header>
+            &lt;/div>
+        );
+    }
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Employment.html">Employment</a></li><li><a href="module-Navbar.html">Navbar</a></li><li><a href="module-TextRotator.html">TextRotator</a></li></ul><h3>Classes</h3><ul><li><a href="module.exports.html">exports</a></li><li><a href="module-Employment.html">Employment</a></li><li><a href="module-Navbar.html">Navbar</a></li><li><a href="module-TextRotator.html">TextRotator</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Thu Mar 28 2024 19:43:01 GMT+0100 (Central European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

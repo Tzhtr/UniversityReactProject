@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/Degrees.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/Degrees.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from "react";
+import './Degrees.css';
+import loading from './gears.gif';
+import axios from "axios";
+import { Accordion, AccordionSummary, AccordionDetails, Typography } from '@mui/material';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
+/**
+ * Class representing the Degrees component displaying available undergraduate and graduate degrees.
+ */
+export default class Degrees extends React.Component {
+    constructor(props) {
+        super(props);
+
+        /**
+         * State of the component.
+         * @property {Array} undergraduateDegrees - Array of objects representing undergraduate degrees.
+         * @property {Array} graduateDegrees - Array of objects representing graduate degrees.
+         * @property {boolean} loaded - Indicates whether the degrees data has been loaded.
+         */
+        this.state = {
+            undergraduateDegrees: [],
+            graduateDegrees: [],
+            loaded: false
+        };
+    }
+
+    componentDidMount() {
+        // Fetch degrees data from the API endpoint when component mounts
+        axios.get('https://people.rit.edu/~dsbics/proxy/https://ischool.gccis.rit.edu/api/degrees')
+            .then((response) => {
+                // Update state with fetched data
+                this.setState({
+                    undergraduateDegrees: response.data.undergraduate,
+                    graduateDegrees: response.data.graduate,
+                    loaded: true
+                });
+            })
+            .catch(() => {
+                console.log("something went wrong");
+            });
+    }
+
+    render() {
+        const { undergraduateDegrees, graduateDegrees, loaded } = this.state;
+    
+        if (!loaded) {
+            return &lt;div>&lt;img src={loading} alt="loading" />&lt;/div>;
+        }
+    
+        return (
+            &lt;div className="about-degree">
+                &lt;h1>Available Degrees&lt;/h1>
+                &lt;div className="degrees-container">
+                    &lt;div className="degrees-section">
+                        &lt;h2>Undergraduate Degrees&lt;/h2>
+                        {/* Render accordion for each undergraduate degree */}
+                        {undergraduateDegrees.map((degree, index) => (
+                            &lt;Accordion key={index}>
+                                &lt;AccordionSummary expandIcon={&lt;ExpandMoreIcon />}>
+                                    &lt;Typography>{degree.title}&lt;/Typography>
+                                &lt;/AccordionSummary>
+                                &lt;AccordionDetails>
+                                    &lt;div className="quote">
+                                        &lt;p>{degree.degreeName}&lt;/p>
+                                        &lt;p>{degree.description}&lt;/p>
+                                        &lt;p>{degree.concentrations.join(', ')}&lt;/p>
+                                    &lt;/div>
+                                &lt;/AccordionDetails>
+                            &lt;/Accordion>
+                        ))}
+                    &lt;/div>
+                    &lt;div className="degrees-section">
+                        &lt;h2>Graduate Degrees&lt;/h2>
+                        {/* Render accordion for each graduate degree */}
+                        {graduateDegrees.map((degree, index) => (
+                            &lt;Accordion key={index}>
+                                &lt;AccordionSummary expandIcon={&lt;ExpandMoreIcon />}>
+                                    &lt;Typography>{degree.title}&lt;/Typography>
+                                &lt;/AccordionSummary>
+                                &lt;AccordionDetails>
+                                    &lt;div className="quote">
+                                        &lt;p>{degree.degreeName}&lt;/p>
+                                        &lt;p>{degree.description}&lt;/p>
+                                        {degree.concentrations &amp;&amp; (
+                                            &lt;p>{degree.concentrations.join(', ')}&lt;/p>
+                                        )}
+                                        {degree.availableCertificates &amp;&amp; (
+                                            &lt;div>
+                                                &lt;p>Available Certificates:&lt;/p>
+                                                &lt;ul>
+                                                    {/* Render available certificates */}
+                                                    {degree.availableCertificates.map((certificate, idx) => (
+                                                        &lt;li key={idx}>{certificate}&lt;/li>
+                                                    ))}
+                                                &lt;/ul>
+                                            &lt;/div>
+                                        )}
+                                    &lt;/div>
+                                &lt;/AccordionDetails>
+                            &lt;/Accordion>
+                        ))}
+                    &lt;/div>
+                &lt;/div>
+            &lt;/div>
+        );
+    }
+}    </code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Employment.html">Employment</a></li><li><a href="module-Navbar.html">Navbar</a></li><li><a href="module-TextRotator.html">TextRotator</a></li></ul><h3>Classes</h3><ul><li><a href="module.exports.html">exports</a></li><li><a href="module-Employment.html">Employment</a></li><li><a href="module-Navbar.html">Navbar</a></li><li><a href="module-TextRotator.html">TextRotator</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Thu Mar 28 2024 19:43:01 GMT+0100 (Central European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

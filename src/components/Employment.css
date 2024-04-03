@@ -1,0 +1,153 @@
+
+.employment {
+    background-color: #4E4948;
+    padding: 8%;
+}
+
+.employment-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.employment-info>div {
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 36px;
+    text-align: center;
+}
+
+.employment p {
+    color: #eeeeee;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    color: #eeeeee;
+}
+
+.employer-list li,
+.careers li {
+    margin-bottom: 5px;
+    color: #eeeeee;
+}
+
+.coop-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.coop-table th,
+.coop-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    color: #eeeeee;
+
+}
+
+.coop-table th {
+    background-color: #f2f2f2;
+    color: black;
+}
+
+.employment h1,
+.employment h2,
+.employment h3 {
+    color: #f76902;
+    margin-bottom: 10px;
+}
+
+.employecareers {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.coop-table {
+    margin-top: 20px;
+}
+
+.coop-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.coop-table th,
+.coop-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.coop-table th {
+    background-color: #f2f2f2;
+}
+
+
+
+.coop-table tbody tr:hover {
+    background-color: #6d6d6d;
+    color: #4E4948;
+}
+
+.pagination {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.pagination li {
+    display: inline-block;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.pagination li.active {
+    font-weight: bold;
+}
+
+.employment-table {
+    margin-top: 20px;
+}
+
+.employment-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.employment-table th,
+.employment-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    color: #eeeeee;
+}
+
+.employment-table th {
+    background-color: #f2f2f2;
+    color: black;
+}
+
+.employment-table tbody tr:hover {
+    background-color: #6d6d6d;
+    color: #4E4948;
+}
+
+.pagination {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.pagination li {
+    display: inline-block;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.pagination li.active {
+    font-weight: bold;
+}

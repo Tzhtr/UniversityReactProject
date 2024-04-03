@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/Faculty.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/Faculty.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Class representing the Faculty component displaying information about faculty members.
+ */
+import React from "react";
+import { Card, CardContent, CardMedia, Typography, CardActionArea } from "@mui/material";
+import './Faculty.css';
+import loading from './gears.gif';
+import axios from "axios";
+
+export default class Faculty extends React.Component {
+    constructor(props) {
+        super(props);
+
+        /**
+         * State of the component.
+         * @property {Array} faculty - Array of objects representing faculty members.
+         * @property {boolean} loaded - Indicates whether the faculty data has been loaded.
+         * @property {number} hoverIndex - Index of the faculty item being hovered.
+         */
+        this.state = {
+            faculty: [],
+            loaded: false,
+            hoverIndex: null
+        };
+    }
+
+    componentDidMount() {
+        // Fetch faculty data from the API endpoint when component mounts
+        axios.get('https://people.rit.edu/~dsbics/proxy/https://ischool.gccis.rit.edu/api/people/faculty')
+            .then((response) => {
+                // Update state with fetched data
+                this.setState({
+                    faculty: response.data.faculty,
+                    loaded: true
+                });
+            })
+            .catch(() => {
+                console.log("something went wrong");
+            });
+    }
+
+    /**
+     * Handles hover event on faculty card.
+     * @param {number} index - Index of the faculty item being hovered.
+     */
+    handleHover = (index) => {
+        this.setState({ hoverIndex: index });
+    };
+
+    /**
+     * Handles mouse leave event from faculty card.
+     */
+    handleHoverLeave = () => {
+        this.setState({ hoverIndex: null });
+    };
+
+    render() {
+        const { faculty, loaded, hoverIndex } = this.state;
+        let content;
+
+        if (!loaded) {
+            // Display loading spinner if faculty data is not loaded yet
+            content = &lt;div className="facultyimg">&lt;img src={loading} alt="loading" />&lt;/div>;
+        } else {
+            // Render faculty cards once data is loaded
+            content = faculty.map((professor, index) => (
+                &lt;CardActionArea
+                    key={index}
+                    onMouseEnter={() => this.handleHover(index)}
+                    onMouseLeave={this.handleHoverLeave}
+                    className="faculty-item"
+                >
+                    &lt;div className="card-container">
+                        &lt;CardMedia
+                            component="img"
+                            height="200"
+                            image={professor.imagePath}
+                            alt={professor.name}
+                        />
+                        {hoverIndex === index &amp;&amp; (
+                            &lt;div className="overlay">
+                                &lt;CardContent>
+                                    &lt;Typography gutterBottom variant="h5" component="div">
+                                        {professor.name}
+                                    &lt;/Typography>
+                                    &lt;Typography variant="body2" color="text.secondary">
+                                        {professor.title}
+                                    &lt;/Typography>
+                                    &lt;Typography variant="body2" color="text.secondary">
+                                        {professor.interestArea}
+                                    &lt;/Typography>
+                                    &lt;Typography variant="body2" color="text.secondary">
+                                        Office: {professor.office}
+                                    &lt;/Typography>
+                                    {professor.website &amp;&amp; &lt;Typography variant="body2" color="text.secondary">&lt;a href={professor.website}>Website&lt;/a>&lt;/Typography>}
+                                    &lt;Typography variant="body2" color="text.secondary">
+                                        Email: {professor.email}
+                                    &lt;/Typography>
+                                    {professor.phone &amp;&amp; &lt;Typography variant="body2" color="text.secondary">Phone: {professor.phone}&lt;/Typography>}
+                                &lt;/CardContent>
+                            &lt;/div>
+                        )}
+                    &lt;/div>
+                &lt;/CardActionArea>
+            ));
+        }
+
+        return (
+            &lt;div>
+                &lt;h1>Faculty&lt;/h1>
+                &lt;div className="faculty">
+                    {content}
+                &lt;/div>
+            &lt;/div>
+        );
+    }
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Employment.html">Employment</a></li><li><a href="module-Navbar.html">Navbar</a></li><li><a href="module-TextRotator.html">TextRotator</a></li></ul><h3>Classes</h3><ul><li><a href="module.exports.html">exports</a></li><li><a href="module-Employment.html">Employment</a></li><li><a href="module-Navbar.html">Navbar</a></li><li><a href="module-TextRotator.html">TextRotator</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Thu Mar 28 2024 19:43:01 GMT+0100 (Central European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
